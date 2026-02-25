@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-main-bg: var(--main-bg);
+  --color-card-bg: var(--card-bg);
+  --color-sec-card-bg: var(--sec-card-bg);
+  --color-border-color: var(--border-color);
+  
+  --color-text-main: var(--text-main);
+  --color-text-sec: var(--text-sec);
+  --color-text-muted: var(--text-muted);
+
+  --color-brand-primary: var(--primary);
+  --color-brand-hover: var(--primary-hover);
+  --color-brand-light: var(--primary-light);
+
+  --color-status-success: var(--success);
+  --color-status-success-light: var(--success-light);
+  --color-status-warning: var(--warning);
+  --color-status-warning-light: var(--warning-light);
+  --color-status-error: var(--error);
+  --color-status-error-light: var(--error-light);
+}
+
+:root {
+  /* LIGHT MODE (Default) */
+  --main-bg: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --sec-card-bg: #F1F5F9;
+  --border-color: #E2E8F0;
+
+  --text-main: #0F172A;
+  --text-sec: #475569;
+  --text-muted: #94A3B8;
+
+  /* Default Blue (Employee / Auth pages) */
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+  --primary-light: #DBEAFE;
+
+  --success: #16A34A;
+  --success-light: #DCFCE7;
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+  --error: #EF4444;
+  --error-light: #FEE2E2;
+}
+
+.dark {
+  /* DARK MODE */
+  --main-bg: #0F172A;
+  --card-bg: #1E293B;
+  --sec-card-bg: #334155;
+  --border-color: #334155;
+
+  --text-main: #F8FAFC;
+  --text-sec: #CBD5E1;
+  --text-muted: #64748B;
+
+  /* Dark mode variants for Default Blue */
+  --primary: #3B82F6;
+  --primary-hover: #60A5FA;
+  --primary-light: #1E3A8A; /* Layered dark blue bg */
+
+  --success: #22C55E;
+  --success-light: rgba(34, 197, 94, 0.15); /* Translucent success bg for dark mode */
+  --warning: #FBBF24;
+  --warning-light: rgba(251, 191, 36, 0.15);
+  --error: #F87171;
+  --error-light: rgba(248, 113, 113, 0.15);
+}
+
+/* Role Overrides - Admin (Red) */
+.theme-admin {
+  --primary: #DC2626;
+  --primary-hover: #B91C1C;
+  --primary-light: #FEE2E2;
+}
+
+.dark.theme-admin {
+  --primary: #EF4444; /* Brighter for dark mode */
+  --primary-hover: #F87171;
+  --primary-light: rgba(239, 68, 68, 0.15); /* Subtle tinted bg */
+}
+
+/* Role Overrides - Manager (Purple) */
+.theme-manager {
+  --primary: #7C3AED;
+  --primary-hover: #6D28D9;
+  --primary-light: #EDE9FE;
+}
+
+.dark.theme-manager {
+  --primary: #A78BFA;
+  --primary-hover: #C4B5FD;
+  --primary-light: rgba(167, 139, 250, 0.15);
+}
