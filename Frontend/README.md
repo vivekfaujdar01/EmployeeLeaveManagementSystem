@@ -13,6 +13,31 @@ This is the frontend application for the Employee Management System. It provides
 - **HTTP Client**: Axios
 - **Notifications**: React Hot Toast
 
+## Folder Structure
+```text
+Frontend/
+├── public/           # Static files not processed by Webpack/Vite
+├── src/
+│   ├── components/   # Reusable UI components (buttons, modals, layout parts)
+│   ├── lib/          # Utilities and Axios instance configurations
+│   ├── pages/        # Main route views (AdminDashboard, EmployeeDashboard, etc.)
+│   ├── App.jsx       # Routing setup (React Router)
+│   └── main.jsx      # React entry point and context providers
+└── vite.config.js    # Vite bundling and development server setup
+```
+
+## User Workflow
+1. **Login/Registration:** Users authenticate. The frontend receives a JWT and role mapping, redirecting them to their respective dashboard (`/employee-dashboard`, `/manager-dashboard`, or `/admin-dashboard`).
+2. **Employee:** From their dashboard, employees can quickly see leave summaries, apply for new leaves, add reimbursement requests (with bill images), and view request statuses.
+3. **Manager:** Managers have access to additional views showing pending requests from their specific team members, allowing quick approve/reject actions.
+4. **Admin:** Admins get a comprehensive view of all system users, all leaves, and all reimbursements, with full rights to delete users or overturn statuses.
+
+## API Integration Points
+The Frontend consumes the backend REST API:
+- **Authentication:** Maps to `/api/auth/*` (Login, Register, Role checks, User CRUD for Admins).
+- **Leaves:** Maps to `/api/leaves/*` (Applying, fetching specific/all leaves, approving/rejecting).
+- **Reimbursements:** Maps to `/api/reimbursements/*` (Submitting multipart form data, fetching, approving/rejecting).
+
 ## Key Features
 - **Role-Specific Dashboards**: Tailored views for `Admin`, `Manager`, and `Employee` roles.
 - **Responsive Design**: fully functional across mobile, tablet, and desktop devices.

@@ -11,10 +11,51 @@ This project is structured as a monorepo containing decoupled Frontend and Backe
 ## Project Structure
 ```text
 Management/
-├── Frontend/       # React + Vite application
-├── Backend/        # Node.js + Express API
-└── README.md       # Project overview
+├── Frontend/                 # React + Vite Application
+│   ├── public/               # Static assets
+│   ├── src/                  # Application source code
+│   │   ├── components/       # Reusable UI components
+│   │   ├── lib/              # Utility functions and axios config
+│   │   ├── pages/            # Page components (Dashboards, Login, etc.)
+│   │   ├── App.jsx           # Main application component & routes
+│   │   └── main.jsx          # Entry point
+│   ├── package.json          # Frontend dependencies
+│   └── vite.config.js        # Vite configuration
+├── Backend/                  # Node.js + Express API
+│   ├── config/               # Database configuration (db.js)
+│   ├── controllers/          # Route controllers (auth, leave, reimbursement)
+│   ├── middleware/           # Custom middleware (auth, error, role)
+│   ├── models/               # Mongoose schemas
+│   ├── routes/               # Express routes
+│   ├── server.js             # Entry point
+│   └── package.json          # Backend dependencies
+└── README.md                 # Project overview
 ```
+
+## System Workflow
+1. **Authentication:** Users register/login. The system assigns roles (`Admin`, `Manager`, `Employee`) and provisions JWT tokens.
+2. **Employee Flow:** Employees access their dashboard to view their status, apply for leaves, and submit reimbursements (with receipt uploads).
+3. **Manager Flow:** Managers view their team's pending requests. They can approve or reject leaves and reimbursements for their team members.
+4. **Admin Flow:** Admins have full system access. They can manage all users, oversee all leaves, and handle all reimbursement requests across the entire organization.
+
+## API Endpoints Summary
+
+### Authentication (`/api/auth`)
+- `POST /check-email` - Verify if email exists and its role
+- `POST /register` - Register a new user
+- `POST /login` - Authenticate user & get token
+- `GET /me` - Get current user profile
+- `GET /users`, `PUT /users/:id`, `DELETE /users/:id` - Admin user management
+
+### Leaves (`/api/leaves`)
+- `POST /` - Apply for leave
+- `GET /my`, `GET /pending`, `GET /` - Fetch user's leaves, pending leaves, or all leaves
+- `PUT /:id/approve`, `PUT /:id/reject`, `DELETE /:id` - Update leave status
+
+### Reimbursements (`/api/reimbursements`)
+- `POST /` - Submit a reimbursement (multipart/form-data)
+- `GET /my`, `GET /pending`, `GET /` - Fetch user's reimbursements, pending ones, or all
+- `PUT /:id/approve`, `PUT /:id/reject`, `DELETE /:id` - Update reimbursement status
 
 ## Features
 - **Role-Based Access Control**: Separate flows and capabilities for Admin, Manager, and Employee roles.
