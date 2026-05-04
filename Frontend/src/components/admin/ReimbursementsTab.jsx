@@ -2,6 +2,8 @@ import React from 'react';
 import { CheckCircle, XCircle, Loader2, FileText } from 'lucide-react';
 import { StatusBadge } from './AdminBadges';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 const ReimbursementsTab = ({ reimbursements, statusFilter, onFilterChange, actionLoading, onAction }) => (
   <div className="bg-card-bg rounded-2xl shadow-sm border border-border-color overflow-hidden transition-colors duration-300">
     <div className="p-6 border-b border-border-color bg-sec-card-bg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -49,7 +51,7 @@ const ReimbursementsTab = ({ reimbursements, statusFilter, onFilterChange, actio
               <td className="px-6 py-4 text-sm text-text-sec">{reimb.approvedBy?.name || '—'}</td>
               <td className="px-6 py-4">
                 {reimb.billImage ? (
-                  <a href={`http://localhost:5000/uploads/${reimb.billImage}`} target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:text-brand-hover transition-colors" title="View bill">
+                  <a href={`${API_BASE_URL}/uploads/${reimb.billImage}`} target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:text-brand-hover transition-colors" title="View bill">
                     <FileText className="h-4 w-4" />
                   </a>
                 ) : (

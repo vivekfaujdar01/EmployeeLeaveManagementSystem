@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./Backend
+    container_name: ems-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./Backend/.env
+    restart: unless-stopped
+    volumes:
+      # Map uploads folder so it persists, or use a named volume
+      - backend_uploads:/app/uploads
+
+  frontend:
+    build: ./Frontend
+    container_name: ems-frontend
+    ports:
+      - "5173:80" # Exposed 5173 to avoid privileged port 80 error
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_uploads:

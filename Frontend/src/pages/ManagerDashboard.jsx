@@ -9,6 +9,8 @@ import { StatCard, ActivityItem, statusIcon } from '../components/shared';
 import { DashboardWelcome } from '../components/dashboard/DashboardWelcome';
 import { DashboardActivityChart } from '../components/dashboard/DashboardActivityChart';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 const ManagerDashboard = () => {
   const navigate = useNavigate();
   const { setRole } = useThemeContext();
@@ -263,7 +265,7 @@ const ManagerDashboard = () => {
                             {reimb.billImage && (
                               <div className="mb-4">
                                 <a
-                                  href={`http://localhost:5000/uploads/${reimb.billImage}`}
+                                  href={`${API_BASE_URL}/uploads/${reimb.billImage}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-sm flex items-center gap-1.5 text-brand-primary hover:text-brand-hover transition-colors"
