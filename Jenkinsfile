@@ -17,6 +17,11 @@ pipeline {
 
         stage('Build and Deploy') {
             steps {
+                echo 'Creating .env file securely...'
+                withCredentials([string(credentialsId: 'backend-env-file', variable: 'ENV_CONTENT')]) {
+                    writeFile file: 'Backend/.env', text: ENV_CONTENT
+                }
+
                 echo 'Building and starting Docker containers...'
                 // Using docker compose v2 syntax
                 sh 'docker compose down'
