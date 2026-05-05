@@ -67,8 +67,6 @@ Management/
 ## Deployment & CI/CD
 
 The application is fully containerized and includes a CI/CD pipeline configured for AWS EC2 using Jenkins and Docker.
-- **[AWS Deployment Guide](AWS_DEPLOYMENT_GUIDE.md):** Step-by-step instructions for deploying to AWS.
-- **[Troubleshooting Guide](TROUBLESHOOTING.md):** Common issues encountered during development and deployment, along with their solutions.
 
 ### Live Access
 - **Application URL:** [http://16.171.9.72:5173](http://16.171.9.72:5173)
