@@ -18,8 +18,8 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                 echo 'Creating .env file securely...'
-                withCredentials([string(credentialsId: 'backend-env-file', variable: 'ENV_CONTENT')]) {
-                    writeFile file: 'Backend/.env', text: ENV_CONTENT
+                withCredentials([file(credentialsId: 'backend-env-file', variable: 'ENV_FILE')]) {
+                    sh 'cp $ENV_FILE Backend/.env'
                 }
                 
                 echo 'Creating Frontend .env file...'
