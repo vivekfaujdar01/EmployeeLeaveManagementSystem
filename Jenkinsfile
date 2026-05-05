@@ -21,6 +21,9 @@ pipeline {
                 withCredentials([string(credentialsId: 'backend-env-file', variable: 'ENV_CONTENT')]) {
                     writeFile file: 'Backend/.env', text: ENV_CONTENT
                 }
+                
+                echo 'Creating Frontend .env file...'
+                writeFile file: 'Frontend/.env', text: 'VITE_API_BASE_URL=http://16.171.9.72:5000'
 
                 echo 'Building and starting Docker containers...'
                 // Using docker compose v2 syntax
