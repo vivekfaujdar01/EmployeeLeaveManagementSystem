@@ -19,6 +19,7 @@ Management/
 │   │   ├── pages/            # Page components (Dashboards, Login, etc.)
 │   │   ├── App.jsx           # Main application component & routes
 │   │   └── main.jsx          # Entry point
+│   ├── Dockerfile            # Docker image configuration for frontend
 │   ├── package.json          # Frontend dependencies
 │   └── vite.config.js        # Vite configuration
 ├── Backend/                  # Node.js + Express API
@@ -27,8 +28,12 @@ Management/
 │   ├── middleware/           # Custom middleware (auth, error, role)
 │   ├── models/               # Mongoose schemas
 │   ├── routes/               # Express routes
+│   ├── Dockerfile            # Docker image configuration for backend
 │   ├── server.js             # Entry point
 │   └── package.json          # Backend dependencies
+├── AWS_DEPLOYMENT_GUIDE.md   # Detailed guide for AWS deployment
+├── docker-compose.yml        # Docker Compose configuration for multi-container setup
+├── Jenkinsfile               # Jenkins CI/CD Pipeline configuration
 └── README.md                 # Project overview
 ```
 
@@ -64,12 +69,29 @@ Management/
 - **Theming**: Dark and Light mode support across the entire interface.
 - **Interactive Dashboards**: Data visualization and quick actions tailored to each user role.
 
-## Deployment & CI/CD
+## CI/CD Pipeline & Deployment
 
-The application is fully containerized and includes a CI/CD pipeline configured for AWS EC2 using Jenkins and Docker.
+The application is fully containerized using **Docker** and managed by a **Jenkins CI/CD Pipeline**, deployed on an **AWS EC2** instance.
+
+### Docker Configuration
+- **Backend**: Containerized using a custom Dockerfile, exposed on port 5000. Uses a named volume `backend_uploads` for persistent storage of uploaded files (e.g., reimbursement receipts).
+- **Frontend**: Containerized using a custom Dockerfile, exposed on port 5173.
+
+The multi-container setup is orchestrated using `docker-compose.yml`.
+
+### Jenkins Pipeline (`Jenkinsfile`)
+The CI/CD pipeline automates the entire deployment process:
+1. **Checkout**: Automatically pulls the latest code from the GitHub repository using SCM webhook triggers.
+2. **Build and Deploy**: 
+   - Securely injects production environment variables using Jenkins Credentials (`backend-env-file`) into `Backend/.env`.
+   - Creates the `Frontend/.env` dynamically with the production API base URL.
+   - Rebuilds and restarts the Docker containers in detached mode using `docker compose up -d --build`.
+3. **Verify Deployment**: Validates the deployment by checking the running Docker containers.
 
 ### Live Access
 - **Application URL:** [http://16.171.9.72:5173](http://16.171.9.72:5173)
+- **API Base URL:** [http://16.171.9.72:5000](http://16.171.9.72:5000)
+
 
 ## Getting Started
 
