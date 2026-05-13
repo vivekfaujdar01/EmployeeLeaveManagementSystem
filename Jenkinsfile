@@ -23,7 +23,7 @@ pipeline {
                 }
                 
                 echo 'Creating Frontend .env file...'
-                writeFile file: 'Frontend/.env', text: 'VITE_API_BASE_URL=http://16.171.9.72:5000'
+                writeFile file: 'Frontend/.env', text: 'VITE_API_BASE_URL=http://13.48.56.48:5000' 
 
                 echo 'Building and starting Docker containers...'
                 // Using docker compose v2 syntax
