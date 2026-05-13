@@ -89,8 +89,8 @@ The CI/CD pipeline automates the entire deployment process:
 3. **Verify Deployment**: Validates the deployment by checking the running Docker containers.
 
 ### Live Access
-- **Application URL:** [http://16.171.9.72:5173](http://16.171.9.72:5173)
-- **API Base URL:** [http://16.171.9.72:5000](http://16.171.9.72:5000)
+- **Application URL:** [http://13.48.56.48:5173](http://13.48.56.48:5173)
+- **API Base URL:** [http://13.48.56.48:5000](http://13.48.56.48:5000)
 
 
 ## Getting Started
